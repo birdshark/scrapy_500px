@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import pymysql
+import time
 
 class ExampleSpider(scrapy.Spider):
     name = "example"
@@ -34,10 +35,11 @@ class ExampleSpider(scrapy.Spider):
 
     def parseDetail(self, response):
         title = response.css('div.title::text').extract_first()
-        time = response.xpath('//span[@id="News_Body_Time"]/text()').extract_first()
+        st = response.xpath('//span[@id="News_Body_Time"]/text()').extract_first()
         content = response.css('div.content').extract_first()
-        sql_insert = "insert into posts(title, publish_date, content) values ('%s','%s','%s')"
-        data = (title,time,content)
+        timestemp = time.mktime(time.strptime(st, "%Y-%m-%d"))
+        sql_insert = "insert into articles(title, created_at, content, updated_at, article_label, article_type, description,article_status) values ('%s','%s','%s','%s','',1,'',1)"
+        data = (title,timestemp,content,timestemp)
         self.cursor.execute(sql_insert % data)
         self.db.commit()
 
