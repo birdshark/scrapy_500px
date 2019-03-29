@@ -57,9 +57,9 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'tutorial.middlewares.TutorialDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'tutorial.middlewares.TutorialDownloaderMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -69,9 +69,20 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'tutorial.pipelines.TutorialPipeline': 300,
-#}
+
+
+# Images stored path
+IMAGES_STORE = 'D:/lab/phalcon_multimodule_example/public'
+# Image Format
+IMAGES_FORMAT = 'jpeg'
+
+
+
+ITEM_PIPELINES = {
+   'tutorial.pipelines.ImagePipeline': 300,
+   'tutorial.pipelines.MysqlPipeline': 301,
+  #  'tutorial.pipelines.TutorialPipeline': 302,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -93,3 +104,11 @@ DEFAULT_REQUEST_HEADERS = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+
+# MYSQL INFO
+MYSQL_HOST = '127.0.0.1'
+MYSQL_DATABASE = 'test'
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = ''
+MYSQL_PORT = 3306
