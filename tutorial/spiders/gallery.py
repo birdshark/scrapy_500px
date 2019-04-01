@@ -11,7 +11,7 @@ from tutorial.items import GalleryItem
 
 class GallerySpider(scrapy.Spider):
     name = 'gallery'
-    page = 2
+    page = 5
     format = 'jpeg'
     def start_requests(self):
         self.format = self.crawler.settings.get('IMAGES_FORMAT')
