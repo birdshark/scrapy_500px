@@ -5,7 +5,7 @@
 	pip install pymysql
   
 ### 使用方法
-`scrapy crawl example`
+`scrapy crawl gallery`
 
 ### 爬取500px的图片
 
