@@ -17,7 +17,7 @@ class GallerySpider(scrapy.Spider):
         self.format = self.crawler.settings.get('IMAGES_FORMAT')
         urls = []
         for i in range(1,self.page):
-            url = 'https://api.500px.com/v1/photos?rpp=50&feature=popular&image_size%5B%5D=36&image_size%5B%5D=2048&sort=&include_states=true&include_licensing=false&formats=' + self.format + '%2Clytro&only=Nature&exclude=&personalized_categories=&rpp=50&page=' + bytes(i)
+            url = 'https://api.500px.com/v1/photos?rpp=50&feature=popular&image_size%5B%5D=36&image_size%5B%5D=2048&sort=&include_states=true&include_licensing=false&formats=' + self.format + '%2Clytro&only=Nature&exclude=&personalized_categories=&rpp=50&page=' + str(i)
             urls.append(url)
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
